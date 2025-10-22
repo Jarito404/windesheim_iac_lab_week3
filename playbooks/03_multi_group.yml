@@ -1,0 +1,10 @@
+---
+- name: NTP op webservers
+  hosts: app
+  become: true
+  tasks:
+
+    - name: Installeer NTP package
+      ansible.builtin.apt:
+        name: "{{ ntp_package }}"
+        state: present

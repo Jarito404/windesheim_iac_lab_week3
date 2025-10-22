@@ -1,0 +1,3 @@
+---
+ntp_package: chrony
+ntp_service: chronyd
