@@ -13,11 +13,11 @@ users:
 files_and_dirs:
   - path: /tmp/testfile1
     state: touch
-    owner: ubuntu
-    group: ubuntu
+    owner: root
+    group: root
     mode: '0644'
   - path: /tmp/testdir1
     state: directory
-    owner: ubuntu
-    group: ubuntu
+    owner: root
+    group: root
     mode: '0755'

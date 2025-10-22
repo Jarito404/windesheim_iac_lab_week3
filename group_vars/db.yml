@@ -2,6 +2,5 @@
 utility_package: curl
 
 db_packages:
-  - mongodb
-  - mongodb-clients
+  - mariadb-server
   - postgresql-client
