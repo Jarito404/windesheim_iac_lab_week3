@@ -1,0 +1,21 @@
+---
+- name: Installeer en beheer nginx op webservvers
+  hosts: app
+  become: true
+  tasks:
+
+    - name: Installeer nginx package
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        update_cache: true
+      tags:
+        - packages
+
+    - name: nginx service starten en enablen
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
+      tags:
+        - services
