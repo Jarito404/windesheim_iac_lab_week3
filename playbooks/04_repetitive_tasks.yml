@@ -1,0 +1,50 @@
+---
+- name: Installeer packages voor webservers
+  hosts: app
+  become: true
+  tasks:
+    - name: Installeer basic tools
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: true
+      loop: "{{ base_packages }}"
+      tags: packages
+
+- name: Installeer packages voor databaseservers
+  hosts: db
+  become: true
+  tasks:
+    - name: Installeer gerelateerde packages
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: true
+      loop: "{{ db_packages }}"
+      tags: packages
+
+- name: Users op alle servers
+  hosts: all
+  become: true
+  tasks:
+    - name: Zeker zijn dat de users er zijn
+      ansible.builtin.user:
+        name: "{{ item.name }}"
+        shell: "{{ item.shell }}"
+        state: "{{ item.state }}"
+      loop: "{{ users }}"
+      tags: users
+
+- name: Maak directories en bestanden op alle servers
+  hosts: all
+  become: true
+  tasks:
+    - name: Maak directories en bestanden
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        state: "{{ item.state }}"
+        owner: "{{ item.owner }}"
+        group: "{{ item.group }}"
+        mode: "{{ item.mode }}"
+      loop: "{{ files_and_dirs }}"
+      tags: files
