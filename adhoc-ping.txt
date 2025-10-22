@@ -1,0 +1,4 @@
+dbserver1 | FAILED | rc=1 >>
+ping: usage error: Destination address requirednon-zero return code
+appserver1 | FAILED | rc=1 >>
+ping: usage error: Destination address requirednon-zero return code
