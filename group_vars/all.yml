@@ -1,0 +1,23 @@
+---
+users:
+  - name: james
+    shell: /bin/bash
+    state: present
+  - name: eram
+    shell: /bin/bash
+    state: present
+  - name: yousef
+    shell: /bin/bash
+    state: absent
+
+files_and_dirs:
+  - path: /tmp/testfile1
+    state: touch
+    owner: ubuntu
+    group: ubuntu
+    mode: '0644'
+  - path: /tmp/testdir1
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+    mode: '0755'
